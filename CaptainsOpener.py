@@ -21,7 +21,7 @@ def add_to_dict():
 
 #Listbox of all website's keys
 listbox = tk.Listbox(root)
-listbox.place(relx=0.5, rely=0.65, anchor="center", relwidth=0.3, height=300)
+listbox.place(relx=0.5, rely=0.6, anchor="center", relwidth=0.3, height=380)
 
 
 #create first dictionary
@@ -41,6 +41,10 @@ def save():
     with open("save_dict.txt", "wb") as myFile:
         pickle.dump(opener_dict, myFile)
 
+def clear(dict):
+    return dict.clear()
+
+
 atexit.register(save)
 
 #show all saved keys in listbox
@@ -48,6 +52,11 @@ def display():
     listbox.delete(0,"end")
     for urls in opener_dict:
         listbox.insert("end", urls)
+
+def add_and_display():
+    add_to_dict()
+    display()
+
 
 #Display everything at the beginning
 root.after(10, display())
@@ -90,20 +99,28 @@ del_insert_label = tk.Label(root, text="Insert key to delete:", font="courier")
 del_insert_label.place(relx=0.1, rely=0.856)
 
 #button insert to dictionary
-insert_button = tk.Button(root, text="Add to opener", command=add_to_dict, font=("Courier",11))
+insert_button = tk.Button(root, text="Add to opener", command=add_and_display, font=("Courier",11))
 insert_button.place(relx=0.5, rely=0.32, anchor ="center", width=200, height=50)
 
-#button to display all primary keys/websites
-display_button = tk.Button(root, text="Display all websites", command=display, font=("Courier",11))
-display_button.place(relx=0.5, rely=0.4, anchor ="center", width=200, height=50)
+#button to display all primary keys/websites (ersetzt)
+#display_button = tk.Button(root, text="Display all websites", command=display, font=("Courier",11))
+#display_button.place(relx=0.5, rely=0.4, anchor ="center", width=200, height=50)
 
-#butto delete
+#button delete one URL
 delete_button = tk.Button(root, text="Delete URLS", command=delete, font=("Courier",11))
 delete_button.place(relx=0.5, rely=0.91, anchor ="center", width=200, height=25)
+
+def clear_and_display():
+    clear(opener_dict)
+    display()
+#button delete all
+del_all_button = tk.Button(root, text="Delete all URLS", command=clear_and_display, font=("Courier",11))
+del_all_button.place(relx=0.5, rely=0.95, anchor ="center", width=200, height=25)
 
 #button open
 open_button = tk.Button(root, text="OPEN ALL URLS", command=opener, font=("Courier",11))
 open_button.place(relx=0.5, rely=0.12, anchor ="center", width=180, height=50)
+
 
 
 
