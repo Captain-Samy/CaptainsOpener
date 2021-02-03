@@ -49,6 +49,10 @@ def display():
     for urls in opener_dict:
         listbox.insert("end", urls)
 
+#Display everything at the beginning
+root.after(10, display())
+
+
 #delete from dictionary
 def delete():
     key_to_delete = del_insert.get()
