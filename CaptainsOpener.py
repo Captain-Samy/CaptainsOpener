@@ -21,7 +21,7 @@ def add_to_dict():
 
 #Listbox of all website's keys
 listbox = tk.Listbox(root)
-listbox.place(relx=0.5, rely=0.6, anchor="center", relwidth=0.3, height=380)
+listbox.place(relx=0.5, rely=0.6, anchor="center", relwidth=0.3, relheight=0.48)
 
 
 #create first dictionary
